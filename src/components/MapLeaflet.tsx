@@ -2,6 +2,16 @@
 
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+const DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 import { useState } from "react";
 
 interface MapLeafletProps {
@@ -22,8 +32,8 @@ const MapLeaflet = ({
           onClick={() => setDisplayMarker(!displayMarker)}
           className={
             displayMarker
-              ? "bg-red-600 text-white py-2 px-4 rounded-xl"
-              : "bg-green-600 text-white py-2 px-4 rounded-xl"
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
           }
         >
           Markers
