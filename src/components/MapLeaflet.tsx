@@ -1,18 +1,15 @@
 /** Map component using react-leaflet https://react-leaflet.js.org/ */
 
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
+
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-const DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
 import { useState } from "react";
+import MarkersLayer from "./layers/MarkersLayer";
+import markersData from "../data/makers.json";
+
+import BarrisLayer from "./layers/BarrisLayer";
+import DistrictesLayer from "./layers/DistrictesLayer";
 
 interface MapLeafletProps {
   centerLongitude: number;
@@ -25,6 +22,8 @@ const MapLeaflet = ({
   zoom,
 }: MapLeafletProps) => {
   const [displayMarker, setDisplayMarker] = useState(false);
+  const [displayBarris, setDisplayBarris] = useState(false);
+  const [displayDistrictes, setDisplayDistrictes] = useState(false);
   return (
     <>
       <div className="flex flex-row gap-4 py-4">
@@ -38,6 +37,26 @@ const MapLeaflet = ({
         >
           Markers
         </button>
+        <button
+          onClick={() => setDisplayBarris(!displayBarris)}
+          className={
+            displayBarris
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+          }
+        >
+          Barris
+        </button>
+        <button
+          onClick={() => setDisplayDistrictes(!displayDistrictes)}
+          className={
+            displayDistrictes
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+          }
+        >
+          Districtes
+        </button>
       </div>
       <MapContainer
         center={[centerLatitude, centerLongitude]}
@@ -48,13 +67,9 @@ const MapLeaflet = ({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {displayMarker ? (
-          <Marker position={[centerLatitude, centerLongitude]}>
-            <Popup>
-              <div className="bg-red-700 text-white p-2">Our pretty marker</div>
-            </Popup>
-          </Marker>
-        ) : null}
+        {displayMarker ? <MarkersLayer markersData={markersData} /> : null}
+        {displayBarris ? <BarrisLayer /> : null}
+        {displayDistrictes ? <DistrictesLayer /> : null}
       </MapContainer>
     </>
   );

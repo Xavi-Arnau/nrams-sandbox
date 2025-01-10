@@ -7,7 +7,7 @@ const Home = () => {
         <MapLeaflet
           centerLongitude={2.176944}
           centerLatitude={41.3825}
-          zoom={12}
+          zoom={11}
         />
       </div>
     </div>
