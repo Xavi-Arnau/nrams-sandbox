@@ -95,6 +95,7 @@ const MapLeaflet = ({
         </button>
       </div>
       <MapContainer
+        className="relative"
         center={[centerLatitude, centerLongitude]}
         zoom={zoom}
         scrollWheelZoom={false}
