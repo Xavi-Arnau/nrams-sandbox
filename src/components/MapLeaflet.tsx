@@ -1,6 +1,12 @@
 /** Map component using react-leaflet https://react-leaflet.js.org/ */
 
+/**Ideas
+ * -Step by step
+ * -Progress with a timer
+ */
+
 import { MapContainer, TileLayer } from "react-leaflet";
+import { MapPin, Grid2x2, Grid3x3, Dot, Minus } from "lucide-react";
 
 import "leaflet/dist/leaflet.css";
 
@@ -10,6 +16,8 @@ import markersData from "../data/makers.json";
 
 import BarrisLayer from "./layers/BarrisLayer";
 import DistrictesLayer from "./layers/DistrictesLayer";
+import PointsLayer from "./layers/PointsLayer";
+import LinesLayer from "./layers/LinesLayer";
 
 interface MapLeafletProps {
   centerLongitude: number;
@@ -24,38 +32,66 @@ const MapLeaflet = ({
   const [displayMarker, setDisplayMarker] = useState(false);
   const [displayBarris, setDisplayBarris] = useState(false);
   const [displayDistrictes, setDisplayDistrictes] = useState(false);
+  const [displayPoints, setDisplayPoints] = useState(false);
+  const [displayLines, setDisplayLines] = useState(false);
   return (
     <>
-      <div className="flex flex-row gap-4 py-4">
+      <div className="flex flex-col md:flex-row gap-4 py-4">
         <button
           onClick={() => setDisplayMarker(!displayMarker)}
           className={
             displayMarker
-              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
-              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
           }
         >
+          <MapPin />
           Markers
+        </button>
+
+        <button
+          onClick={() => setDisplayDistrictes(!displayDistrictes)}
+          className={
+            displayDistrictes
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+          }
+        >
+          <Grid2x2 />
+          Districtes GeoJSON
         </button>
         <button
           onClick={() => setDisplayBarris(!displayBarris)}
           className={
             displayBarris
-              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
-              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
           }
         >
-          Barris
+          <Grid3x3 />
+          Barris GeoJSON
         </button>
         <button
-          onClick={() => setDisplayDistrictes(!displayDistrictes)}
+          onClick={() => setDisplayPoints(!displayPoints)}
           className={
-            displayDistrictes
-              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110"
-              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110"
+            displayPoints
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
           }
         >
-          Districtes
+          <Dot />
+          Points
+        </button>
+        <button
+          onClick={() => setDisplayLines(!displayLines)}
+          className={
+            displayLines
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+          }
+        >
+          <Minus />
+          Lines
         </button>
       </div>
       <MapContainer
@@ -70,6 +106,8 @@ const MapLeaflet = ({
         {displayMarker ? <MarkersLayer markersData={markersData} /> : null}
         {displayBarris ? <BarrisLayer /> : null}
         {displayDistrictes ? <DistrictesLayer /> : null}
+        {displayPoints ? <PointsLayer /> : null}
+        {displayLines ? <LinesLayer /> : null}
       </MapContainer>
     </>
   );
