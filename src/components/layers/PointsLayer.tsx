@@ -1,13 +1,45 @@
 import { Circle } from "react-leaflet";
 
 import { LatLngExpression } from "leaflet";
+import { useEffect, useState } from "react";
 
 const PointsLayer = () => {
-  const center: LatLngExpression = [41.390611969954676, 2.18345134700301];
+  const [opacity, setOpacity] = useState(0.1);
+  const [increase, setIncrease] = useState(true);
+  const data: LatLngExpression[] = [
+    [41.324633, 2.095257],
+    [41.345833, 2.041667],
+    [41.433333, 2.233333],
+  ];
 
-  const redOptions = { color: "red" };
+  useEffect(() => {
+    //Implementing the setInterval method
+    const interval = setInterval(() => {
+      if (opacity >= 1) {
+        setIncrease(false);
+      } else if (opacity <= 0) {
+        setIncrease(true);
+      }
+      if (increase) {
+        setOpacity((prev) => prev + 0.1);
+      } else {
+        setOpacity((prev) => prev - 0.1);
+      }
+    }, 100);
 
-  return <Circle center={center} pathOptions={redOptions} radius={200} />;
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [opacity, increase]);
+
+  const redOptions = { color: "orange", fillOpacity: opacity, opacity: 1 };
+
+  return (
+    <>
+      {data.map((item) => (
+        <Circle center={item} pathOptions={redOptions} radius={2000} />
+      ))}
+    </>
+  );
 };
 
 export default PointsLayer;
