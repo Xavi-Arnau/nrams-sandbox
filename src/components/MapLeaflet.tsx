@@ -36,6 +36,8 @@ const MapLeaflet = ({
   const [displayPoints, setDisplayPoints] = useState(false);
   const [displayLines, setDisplayLines] = useState(false);
   const [displayMiniMap, setDisplayMiniMap] = useState(false);
+  console.log("ads");
+
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 py-4">
