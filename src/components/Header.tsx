@@ -10,6 +10,9 @@ const Header = () => {
           <li>
             <Link to="/">Maps</Link>
           </li>
+          <li>
+            <Link to="/testwms">WMS Map</Link>
+          </li>
         </ul>
       </div>
     </div>

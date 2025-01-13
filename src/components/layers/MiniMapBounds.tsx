@@ -27,6 +27,7 @@ function MinimapBounds({ parentMap, zoom }: MinimapBoundsProps) {
 
   // Keep track of bounds in state to trigger renders
   const [bounds, setBounds] = useState(parentMap.getBounds());
+
   const onChange = useCallback(() => {
     setBounds(parentMap.getBounds());
     // Update the minimap's view to match the parent map's center and zoom
@@ -38,6 +39,7 @@ function MinimapBounds({ parentMap, zoom }: MinimapBoundsProps) {
     () => ({ move: onChange, zoom: onChange }),
     [onChange]
   );
+  //issue with evenhandlers and context
   //https://stackoverflow.com/questions/70730390/property-context-is-missing-in-type-instance-any-but-required-in-type
   const context = useLeafletContext();
   useEventHandlers({ instance: parentMap, context }, handlers);

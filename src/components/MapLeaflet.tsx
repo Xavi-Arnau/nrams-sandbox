@@ -124,7 +124,7 @@ const MapLeaflet = ({
         {displayPoints ? <PointsLayer /> : null}
         {displayLines ? <LinesLayer /> : null}
         {displayMiniMap ? (
-          <MiniMapLayer position={"topright"} zoom={0} />
+          <MiniMapLayer position={"topright"} zoom={5} />
         ) : null}
       </MapContainer>
     </>
