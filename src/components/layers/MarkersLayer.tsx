@@ -24,9 +24,7 @@ const MarkersLayer = ({ markersData }: MarkersLayerProps) => {
     <>
       {markersData.map((item) => (
         <Marker key={item.lat} position={[item.lat, item.lng]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          <Popup>These days...</Popup>
         </Marker>
       ))}
     </>

@@ -6,7 +6,7 @@
  */
 
 import { MapContainer, TileLayer } from "react-leaflet";
-import { MapPin, Grid2x2, Grid3x3, Dot, Minus } from "lucide-react";
+import { MapPin, Grid2x2, Grid3x3, Dot, Minus, Map } from "lucide-react";
 
 import "leaflet/dist/leaflet.css";
 
@@ -18,6 +18,7 @@ import BarrisLayer from "./layers/BarrisLayer";
 import DistrictesLayer from "./layers/DistrictesLayer";
 import PointsLayer from "./layers/PointsLayer";
 import LinesLayer from "./layers/LinesLayer";
+import MiniMapLayer from "./layers/MiniMapLayer";
 
 interface MapLeafletProps {
   centerLongitude: number;
@@ -34,6 +35,7 @@ const MapLeaflet = ({
   const [displayDistrictes, setDisplayDistrictes] = useState(false);
   const [displayPoints, setDisplayPoints] = useState(false);
   const [displayLines, setDisplayLines] = useState(false);
+  const [displayMiniMap, setDisplayMiniMap] = useState(false);
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 py-4">
@@ -93,12 +95,24 @@ const MapLeaflet = ({
           <Minus />
           Lines
         </button>
+        <button
+          onClick={() => setDisplayMiniMap(!displayMiniMap)}
+          className={
+            displayMiniMap
+              ? "bg-red-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+              : "bg-green-600 text-white py-2 px-4 rounded-xl hover:scale-110 flex gap-2"
+          }
+        >
+          <Map />
+          MiniMap
+        </button>
       </div>
       <MapContainer
         className="relative"
         center={[centerLatitude, centerLongitude]}
         zoom={zoom}
         scrollWheelZoom={false}
+        doubleClickZoom={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -109,6 +123,9 @@ const MapLeaflet = ({
         {displayDistrictes ? <DistrictesLayer /> : null}
         {displayPoints ? <PointsLayer /> : null}
         {displayLines ? <LinesLayer /> : null}
+        {displayMiniMap ? (
+          <MiniMapLayer position={"topright"} zoom={0} />
+        ) : null}
       </MapContainer>
     </>
   );

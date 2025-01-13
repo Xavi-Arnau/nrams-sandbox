@@ -31,12 +31,21 @@ const PointsLayer = () => {
     return () => clearInterval(interval);
   }, [opacity, increase]);
 
-  const redOptions = { color: "orange", fillOpacity: opacity, opacity: 1 };
+  const redOptions = {
+    color: "orange",
+    fillOpacity: opacity,
+    opacity: opacity,
+  };
 
   return (
     <>
-      {data.map((item) => (
-        <Circle center={item} pathOptions={redOptions} radius={2000} />
+      {data.map((item, index) => (
+        <Circle
+          key={index}
+          center={item}
+          pathOptions={redOptions}
+          radius={2000}
+        />
       ))}
     </>
   );
