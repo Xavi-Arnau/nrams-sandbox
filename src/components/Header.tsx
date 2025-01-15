@@ -13,6 +13,9 @@ const Header = () => {
           <li>
             <Link to="/testwms">WMS Map</Link>
           </li>
+          <li>
+            <Link to="/editable">Editable</Link>
+          </li>
         </ul>
       </div>
     </div>

@@ -36,7 +36,6 @@ const MapLeaflet = ({
   const [displayPoints, setDisplayPoints] = useState(false);
   const [displayLines, setDisplayLines] = useState(false);
   const [displayMiniMap, setDisplayMiniMap] = useState(false);
-  console.log("ads");
 
   return (
     <>

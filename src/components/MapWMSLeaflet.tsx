@@ -31,7 +31,7 @@ const MapWMSLeaflet = ({
   const [displayPoints, setDisplayPoints] = useState(false);
   const [displayLines, setDisplayLines] = useState(false);
   const [displayMiniMap, setDisplayMiniMap] = useState(false);
-  console.log("ajhkjhkds");
+  
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 py-4">
