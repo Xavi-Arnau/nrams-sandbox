@@ -1,7 +1,11 @@
 // @ts-nocheck
+//testing the leaflet-editable inside of react-leaflet structure
+//https://leaflet.github.io/Leaflet.Editable/doc/api.html
+//https://codesandbox.io/p/sandbox/react-leaflet-ctrl-click-7cs0u?file=%2Fsrc%2Findex.js
 import { useMap } from "react-leaflet";
 import "leaflet-editable";
 import { useState } from "react";
+import { Square, Minus, Circle, RectangleHorizontal } from "lucide-react";
 
 const EditableElementsLayer = () => {
   const [shapes, setShapes] = useState([]);
@@ -9,6 +13,13 @@ const EditableElementsLayer = () => {
 
   const newPolyLine = () => {
     parentMap.editTools.startPolyline(null);
+  };
+  const newCircle = () => {
+    parentMap.editTools.startCircle(null);
+  };
+
+  const startRectangle = () => {
+    parentMap.editTools.startRectangle(null);
   };
 
   const newPolygon = () => {
@@ -19,20 +30,31 @@ const EditableElementsLayer = () => {
 
   return (
     <div className="leaflet-top leaflet-right">
-      <div className="leaflet-control">
+      <div className="leaflet-control flex flex-col gap-2">
         <button
           onClick={newPolyLine}
-          className="bg-black text-white py-2 px-4 text-3xl hover:scale-110 "
+          className="bg-black text-white p-2 text-3xl hover:scale-110 rounded-xl"
         >
-          line
+          <Minus />
         </button>
         <button
           onClick={newPolygon}
-          className="bg-black text-white py-2 px-4 text-3xl hover:scale-110 "
+          className="bg-black text-white p-2 text-3xl hover:scale-110 rounded-xl"
         >
-          polygon
+          <Square />
         </button>
-        ;
+        <button
+          onClick={newCircle}
+          className="bg-black text-white p-2 text-3xl hover:scale-110 rounded-xl"
+        >
+          <Circle />
+        </button>
+        <button
+          onClick={startRectangle}
+          className="bg-black text-white p-2 text-3xl hover:scale-110 rounded-xl"
+        >
+          <RectangleHorizontal />
+        </button>
       </div>
     </div>
   );
