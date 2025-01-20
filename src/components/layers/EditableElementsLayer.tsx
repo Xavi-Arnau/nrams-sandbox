@@ -3,7 +3,7 @@
 //https://leaflet.github.io/Leaflet.Editable/doc/api.html
 //https://codesandbox.io/p/sandbox/react-leaflet-ctrl-click-7cs0u?file=%2Fsrc%2Findex.js
 import L from "leaflet";
-import { FeatureGroup, useMap } from "react-leaflet";
+import { FeatureGroup, useMap, useMapEvent } from "react-leaflet";
 import "leaflet-editable";
 import { useEffect, useRef } from "react";
 import {
@@ -14,12 +14,24 @@ import {
   Save,
   Eraser,
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
 //https://gis.stackexchange.com/questions/237171/making-a-geojson-layer-editable-with-the-leaflet-editable-plugin
 //load shapes from data
 const EditableElementsLayer = ({ data }) => {
   const parentMap = useMap();
-
   const featureGroupRef = useRef();
+  const { toast } = useToast();
+
+  useMapEvent("editable:drawing:end", () => {
+    console.log("done drawing");
+    const geoJSON = featureGroupRef.current.toGeoJSON();
+    toast({
+      title: "New element created!",
+      description: "New element created and succesfully added to the map",
+    });
+    console.log(geoJSON);
+  });
 
   useEffect(() => {
     featureGroupRef.current.clearLayers();

@@ -4,8 +4,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import TestWMS from "./pages/TestWMS";
 import Editable from "./pages/Editable";
-
 import EditableGeoman from "./pages/EditableGeoman";
+import { Toaster } from "@/components/ui/toaster";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/editablegeoman" element={<EditableGeoman />} />
           </Routes>
         </div>
-
+        <Toaster />
         <Footer />
       </BrowserRouter>
     </div>

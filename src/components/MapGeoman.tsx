@@ -1,5 +1,6 @@
 // @ts-nocheck
 //https://codesandbox.io/p/sandbox/leaflet-geoman-394eq?file=%2Fsrc%2Fcomponents%2FGeoman.js
+//https://geoman.io/docs/leaflet/getting-started/free-version
 
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
