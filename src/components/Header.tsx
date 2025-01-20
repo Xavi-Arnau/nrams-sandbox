@@ -30,6 +30,7 @@ const Header = () => {
               className="text-white bg-black z-[9999]"
             >
               <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
                 <SheetDescription>
                   <ul className="flex flex-col gap-2 w-40 p-4 text-left">
                     <li>
