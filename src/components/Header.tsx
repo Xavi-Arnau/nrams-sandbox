@@ -10,10 +10,10 @@ import {
 const Header = () => {
   return (
     <div className="bg-black text-white w-full">
-      <div className="flex flex-row w-10/12 mx-auto gap-4 items-center justify-between p-4">
+      <div className="flex flex-col md:flex-row w-10/12 mx-auto gap-4 items-center justify-between p-4">
         <div className="text-2xl">NRAMS SandBox</div>
 
-        <ul className="flex flex-row gap-4">
+        <ul className="flex flex-col md:flex-row gap-4">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
