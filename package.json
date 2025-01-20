@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@geoman-io/leaflet-geoman-free": "^2.18.3",
     "@radix-ui/react-navigation-menu": "^1.2.3",
     "@radix-ui/react-select": "^2.1.4",
     "@react-leaflet/core": "^3.0.0",

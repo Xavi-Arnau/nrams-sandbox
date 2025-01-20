@@ -43,10 +43,10 @@ const Header = () => {
                 <NavigationMenuContent>
                   <ul className="flex flex-col gap-2 w-40 p-4">
                     <li>
-                      <Link to="/editable">Editable</Link>
+                      <Link to="/editable">Leaflet-Editable</Link>
                     </li>
                     <li>
-                      <Link to="/editableraw">Editable no react-leaflet</Link>
+                      <Link to="/editablegeoman">Geoman</Link>
                     </li>
                   </ul>
                 </NavigationMenuContent>
