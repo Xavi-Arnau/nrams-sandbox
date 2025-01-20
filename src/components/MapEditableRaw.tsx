@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { MapContainer, TileLayer } from "react-leaflet";
+import L from "leaflet";
 import "leaflet-editable";
-import EditableElementsLayer from "./layers/EditableElementsLayer";
+
 import {
   Select,
   SelectContent,
@@ -10,22 +10,40 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-interface MapEditableProps {
+interface MapEditableRawProps {
   centerLongitude: number;
   centerLatitude: number;
   zoom: number;
 }
-const MapEditable = ({
+const MapEditableRaw = ({
   centerLongitude,
   centerLatitude,
   zoom,
-}: MapEditableProps) => {
+}: MapEditableRawProps) => {
   const [data, setData] = useState(null);
 
+  const MAP_TILE = L.tileLayer(
+    `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`,
+    {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }
+  );
+  const mapParams: L.MapOptions = {
+    center: L.latLng(centerLatitude, centerLongitude),
+    zoom: zoom,
+    zoomControl: false,
+    layers: [MAP_TILE],
+  };
+  //asdsad
+  useEffect(() => {
+    const map = L.map("map", mapParams);
+  }, []);
+
   const changeLayer = async (value) => {
-    //console.log(value);
+    console.log(value);
     const response = await axios.get(`/data${value}.geojson`);
     setData(response.data);
     //console.log(response.data);
@@ -44,22 +62,9 @@ const MapEditable = ({
         </Select>
       </div>
 
-      <MapContainer
-        className="relative"
-        center={[centerLatitude, centerLongitude]}
-        zoom={zoom}
-        scrollWheelZoom={false}
-        doubleClickZoom={false}
-        editable
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {data ? <EditableElementsLayer data={data} /> : null}
-      </MapContainer>
+      <div id="map" className="w-full h-48"></div>
     </div>
   );
 };
 
-export default MapEditable;
+export default MapEditableRaw;

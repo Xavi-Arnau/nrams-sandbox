@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.3",
+    "@radix-ui/react-select": "^2.1.4",
     "@react-leaflet/core": "^3.0.0",
     "@types/geojson": "^7946.0.15",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "leaflet": "^1.9.4",

@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import TestWMS from "./pages/TestWMS";
 import Editable from "./pages/Editable";
+import EditableRaw from "./pages/EditableRaw";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/testwms" element={<TestWMS />} />
             <Route path="/editable" element={<Editable />} />
+            <Route path="/editableraw" element={<EditableRaw />} />
           </Routes>
         </div>
 

@@ -2,9 +2,10 @@
 //testing the leaflet-editable inside of react-leaflet structure
 //https://leaflet.github.io/Leaflet.Editable/doc/api.html
 //https://codesandbox.io/p/sandbox/react-leaflet-ctrl-click-7cs0u?file=%2Fsrc%2Findex.js
+import L from "leaflet";
 import { FeatureGroup, useMap } from "react-leaflet";
 import "leaflet-editable";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   Square,
   Minus,
@@ -13,11 +14,30 @@ import {
   Save,
   Eraser,
 } from "lucide-react";
-
-const EditableElementsLayer = () => {
+//https://gis.stackexchange.com/questions/237171/making-a-geojson-layer-editable-with-the-leaflet-editable-plugin
+//load shapes from data
+const EditableElementsLayer = ({ data }) => {
   const parentMap = useMap();
 
   const featureGroupRef = useRef();
+
+  useEffect(() => {
+    featureGroupRef.current.clearLayers();
+
+    let latLong = [];
+    data.features.forEach(function (currentFeature) {
+      currentFeature.geometry.coordinates.forEach(function (locationArray) {
+        latLong.push([locationArray[1], locationArray[0]]);
+      });
+      //console.log(latLong);
+
+      const polyline = L.polyline(latLong);
+      featureGroupRef.current.addLayer(polyline);
+      polyline.enableEdit();
+
+      latLong = [];
+    });
+  }, [data, parentMap]);
 
   const newPolyLine = () => {
     const newShape = parentMap.editTools.startPolyline(null);
@@ -94,3 +114,8 @@ const EditableElementsLayer = () => {
 };
 
 export default EditableElementsLayer;
+
+/**
+ * featuregroup
+ * https://stackoverflow.com/questions/69331770/react-leaflet-how-to-clear-a-feature-group-and-add-new-components-using-state
+ */
