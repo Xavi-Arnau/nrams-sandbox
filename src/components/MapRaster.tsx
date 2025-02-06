@@ -7,7 +7,7 @@
 //https://github.com/IHCantabria/Leaflet.CanvasLayer.Field
 
 import { MapContainer, TileLayer } from "react-leaflet";
-import FuelLayer from "./layers/FuelLayer";
+//import FuelLayer from "./layers/FuelLayer";
 import FuelLayer2 from "./layers/FuelLayer2";
 interface MapRasterProps {
   centerLongitude: number;
