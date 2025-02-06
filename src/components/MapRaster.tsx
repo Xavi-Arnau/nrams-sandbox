@@ -1,3 +1,4 @@
+// @ts-nocheck
 //GeoRasterLayer only tiff?
 //https://www.npmjs.com/package/georaster
 //https://www.npmjs.com/package/georaster-layer-for-leaflet
@@ -7,7 +8,6 @@
 //https://github.com/IHCantabria/Leaflet.CanvasLayer.Field
 
 import { MapContainer, TileLayer } from "react-leaflet";
-//import FuelLayer from "./layers/FuelLayer";
 import FuelLayer2 from "./layers/FuelLayer2";
 interface MapRasterProps {
   centerLongitude: number;

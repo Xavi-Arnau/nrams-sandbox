@@ -1,11 +1,20 @@
 // @ts-nocheck
 import parseGeoraster from "georaster";
-import GeoRasterLayer from "georaster-layer-for-leaflet";
+
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 
 const FuelLayer2 = () => {
   const parentMap = useMap();
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://unpkg.com/georaster-layer-for-leaflet@3.10.0/dist/georaster-layer-for-leaflet.min.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
