@@ -69,6 +69,9 @@ const Header = () => {
                     <li>
                       <Link to="/testwms">WMS Map</Link>
                     </li>
+                    <li>
+                      <Link to="/rastertest">Raster test</Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>

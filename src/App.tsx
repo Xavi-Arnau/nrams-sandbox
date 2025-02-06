@@ -6,6 +6,7 @@ import TestWMS from "./pages/TestWMS";
 import Editable from "./pages/Editable";
 import EditableGeoman from "./pages/EditableGeoman";
 import { Toaster } from "@/components/ui/toaster";
+import RasterTest from "./pages/RasterTest";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/testwms" element={<TestWMS />} />
             <Route path="/editable" element={<Editable />} />
             <Route path="/editablegeoman" element={<EditableGeoman />} />
+            <Route path="/rastertest" element={<RasterTest />} />
           </Routes>
         </div>
         <Toaster />
