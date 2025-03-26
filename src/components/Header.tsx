@@ -17,6 +17,7 @@ import {
 import { Menu } from "lucide-react";
 
 const Header = () => {
+  const back = import.meta.env.VITE_APP_BACKEND_ADDRESS;
   return (
     <div className="bg-black text-white w-full">
       <div className="flex flex-row md:flex-row w-10/12 mx-auto gap-4 items-center justify-between p-4">
@@ -52,7 +53,7 @@ const Header = () => {
             </SheetContent>
           </Sheet>
         </div>
-        <div className="text-2xl">NRAMS SandBox</div>
+        <div className="text-2xl">NRAMS SandBox {back}</div>
 
         <ul className="hidden md:flex flex-col md:flex-row gap-4 ">
           <NavigationMenu>
