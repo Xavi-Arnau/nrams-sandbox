@@ -3,10 +3,10 @@ WORKDIR /app
 COPY . .
 
 RUN npm install
-RUN npm run build
+RUN npm run build -- --mode staging
 
 FROM nginx:1.25.4-alpine-slim AS prod
 COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf  /etc/nginx/conf.d
+COPY nginx-staging.conf  /etc/nginx/conf.d
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]

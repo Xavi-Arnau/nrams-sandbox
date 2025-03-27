@@ -7,12 +7,10 @@ services:
     container_name: frontend
     restart: always
     ports:
-      - 3000:3000
+      - 4000:3000
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - VITE_APP_BACKEND_ADDRESS=http://localhost/api
     networks:
       - network
 networks:
