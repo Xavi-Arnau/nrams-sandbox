@@ -73,6 +73,9 @@ const Header = () => {
                     <li>
                       <Link to="/rastertest">Raster test</Link>
                     </li>
+                    <li>
+                      <Link to="/globe">Globe test</Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
