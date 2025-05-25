@@ -1,6 +1,16 @@
+//@ts-nocheck
 import { useRef, useEffect, useState, ChangeEvent } from "react";
 import Globe from "react-globe.gl";
 import type { GlobeMethods } from "react-globe.gl";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog";
 
 type Marker = {
   lat: number;
@@ -12,6 +22,8 @@ type Marker = {
 };
 
 const GlobeTest = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [info, setInfo] = useState("");
   const globeEl = useRef<GlobeMethods | undefined>(undefined);
   const [markers, setMarkers] = useState<Marker[]>([
     {
@@ -52,8 +64,25 @@ const GlobeTest = () => {
     const type = e.target.value;
     setMarkers(markers.filter((item) => item.type === type));
   };
+
+  const handlePointClick = (point: Marker) => {
+    console.log(point);
+    setInfo(point.name);
+    setShowPopup(true);
+  };
   return (
     <div className="relative" style={{ width: "100vw", height: "100vh" }}>
+      <AlertDialog open={showPopup} onOpenChange={setShowPopup}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Some info</AlertDialogTitle>
+            <AlertDialogDescription>{info}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className="w-full absolute top-0 left-0 z-[100] flex flex-row justify-center">
         <select onChange={handleChange}>
           <option value="all">All</option>
@@ -70,8 +99,16 @@ const GlobeTest = () => {
         pointLat="lat"
         pointLng="lng"
         pointColor="color"
-        pointAltitude="size"
+        pointAltitude={0.1}
         pointLabel="name"
+        labelsData={markers}
+        labelText={"name"}
+        labelSize={0.5}
+        labelColor={() => "orange"}
+        labelAltitude={0.05}
+        labelDotRadius={0.2}
+        onPointClick={handlePointClick}
+        onLabelClick={handlePointClick}
       />
     </div>
   );
