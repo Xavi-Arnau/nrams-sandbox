@@ -47,6 +47,9 @@ const Header = () => {
                     <li>
                       <Link to="/editablegeoman">Geoman</Link>
                     </li>
+                    <li>
+                      <Link to="/globe">Globe test</Link>
+                    </li>
                   </ul>
                 </SheetDescription>
               </SheetHeader>
@@ -73,9 +76,6 @@ const Header = () => {
                     <li>
                       <Link to="/rastertest">Raster test</Link>
                     </li>
-                    <li>
-                      <Link to="/globe">Globe test</Link>
-                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -95,6 +95,22 @@ const Header = () => {
                     </li>
                     <li>
                       <Link to="/editablegeoman">Geoman</Link>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-black text-white">
+                  Other
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="flex flex-col gap-2 w-40 p-4">
+                    <li>
+                      <Link to="/globe">Globe test</Link>
                     </li>
                   </ul>
                 </NavigationMenuContent>

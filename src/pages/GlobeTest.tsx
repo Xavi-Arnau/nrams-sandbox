@@ -11,6 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
+import { wildfires } from "@/data/fakeWildfires";
 
 type Marker = {
   lat: number;
@@ -54,7 +55,7 @@ const GlobeTest = () => {
   useEffect(() => {
     if (globeEl.current) {
       const controls = globeEl.current.controls();
-      controls.autoRotate = true;
+      controls.autoRotate = false;
       controls.autoRotateSpeed = 0.5;
     }
   }, []);
@@ -65,9 +66,15 @@ const GlobeTest = () => {
     setMarkers(markers.filter((item) => item.type === type));
   };
 
-  const handlePointClick = (point: Marker) => {
+  const handlePointClick = (point) => {
     console.log(point);
-    setInfo(point.name);
+    setInfo(
+      point.date +
+        " | " +
+        point.province +
+        " | Area burned: " +
+        point.area_burned
+    );
     setShowPopup(true);
   };
   return (
@@ -93,21 +100,16 @@ const GlobeTest = () => {
       </div>
       <Globe
         ref={globeEl}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        pointsData={markers}
-        pointLat="lat"
-        pointLng="lng"
-        pointColor="color"
-        pointAltitude={0.1}
-        pointLabel="name"
-        labelsData={markers}
-        labelText={"name"}
-        labelSize={0.5}
+        globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg"
+        pointsData={wildfires}
+        labelLat="latitude"
+        labelLng="longitude"
+        labelsData={wildfires}
+        labelText="province"
+        labelSize={0.15}
         labelColor={() => "orange"}
-        labelAltitude={0.05}
-        labelDotRadius={0.2}
-        onPointClick={handlePointClick}
+        labelAltitude={0.005}
+        labelDotRadius={0.08}
         onLabelClick={handlePointClick}
       />
     </div>
