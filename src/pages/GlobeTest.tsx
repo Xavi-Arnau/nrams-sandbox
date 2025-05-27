@@ -68,13 +68,7 @@ const GlobeTest = () => {
 
   const handlePointClick = (point) => {
     console.log(point);
-    setInfo(
-      point.date +
-        " | " +
-        point.province +
-        " | Area burned: " +
-        point.area_burned
-    );
+    setInfo(point.Year + " | " + point.Name + " | " + point["Elevation (m)"]);
     setShowPopup(true);
   };
   return (
