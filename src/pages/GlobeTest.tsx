@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
-import { wildfires } from "@/data/fakeWildfires";
+import { volcans } from "@/data/volcans";
 
 type Marker = {
   lat: number;
@@ -101,16 +101,25 @@ const GlobeTest = () => {
       <Globe
         ref={globeEl}
         globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg"
-        pointsData={wildfires}
-        labelLat="latitude"
-        labelLng="longitude"
-        labelsData={wildfires}
-        labelText="province"
-        labelSize={0.15}
-        labelColor={() => "orange"}
-        labelAltitude={0.005}
-        labelDotRadius={0.08}
+        pointLat="Latitude"
+        pointLng="Longitude"
+        pointsData={volcans}
+        labelLat="Latitude"
+        labelLng="Longitude"
+        labelsData={volcans}
+        labelText="Name"
+        labelSize={0.2}
+        labelColor={() => "black"}
+        labelAltitude={0.05}
+        labelDotRadius={0.15}
         onLabelClick={handlePointClick}
+        ringLat="Latitude"
+        ringLng="Longitude"
+        ringsData={volcans}
+        ringColor={() => "red"}
+        globeTileEngineUrl={(x, y, l) =>
+          `https://tile.openstreetmap.org/${l}/${x}/${y}.png`
+        }
       />
     </div>
   );
